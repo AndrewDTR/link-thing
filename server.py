@@ -28,6 +28,14 @@ app.add_middleware(
 connection = sqlite3.connect("links.db")
 cursor = connection.cursor()
 
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS links (
+    id TEXT PRIMARY KEY NOT NULL,
+    link TEXT NOT NULL UNIQUE
+);
+""")
+connection.commit()
+
 BASE_DOMAIN = "https://example.com/"
 LENGTH = 5
 
