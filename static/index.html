@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <p>what do you want your link to be called (leave blank for random)</p>
+      <input id="link_id" />
+      <p>link goes to?</p>
+      <input id="link_link" />
+      <button onclick="send()" style="display: block; margin-top: 5px">
+        create link
+      </button>
+    </div>
+
+    <script>
+      function send() {
+        let link_id = document.getElementById("link_id").value;
+        let link_link = document.getElementById("link_link").value;
+
+        axios
+          .post("http://127.0.0.1:8000/api/create", {
+            link: link_link,
+            id: link_id,
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+    </script>
+  </body>
+</html>
